@@ -14,7 +14,7 @@ describe('calendar', function(){
 
         html = "";
         html += "<calendar>" +
-        + "<calendar-picker></calendar-picker>" +
+        "<calendar-picker></calendar-picker>" +
         "</calendar>";
 
         scope = $rootScope.$new();
@@ -38,7 +38,11 @@ describe('calendar-picker', function(){
     var scope,
         element,
         compiled,
-        html;
+        html,
+        monthsAvailable,
+        ctrl,
+        changedMonth,
+        changedYear;
 
     beforeEach(module('calendarDemoApp'));
     beforeEach(module('calendar.html'));
@@ -46,8 +50,13 @@ describe('calendar-picker', function(){
     beforeEach(inject(function($rootScope, $compile){
         html = "";
         html += "<calendar>" +
-        + "<calendar-picker></calendar-picker>" +
+        "<calendar-picker></calendar-picker>" +
         "</calendar>";
+
+        monthsAvailable = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        changedMonth = monthsAvailable[4];
+        changedYear = 2014;
 
         scope = $rootScope.$new();
         compiled = $compile(html);
@@ -57,6 +66,19 @@ describe('calendar-picker', function(){
     }));
 
     it('should render the element correctly', function(){
-        console.log(element);
+        var today = new Date();
+        var monthPicker = element.find('select[ng-model="dropdowns.months.currentMonth"]');
+        expect(monthsAvailable.indexOf(monthPicker.val())).toBe(today.getMonth());
+        var yearPicker = element.find('select[ng-model="dropdowns.years.currentYear"]');
+        expect(parseInt(yearPicker.val())).toBe(today.getFullYear());
+
+        ctrl = element.data('$calendarController');
+        spyOn(ctrl, 'setMonth');
+        spyOn(ctrl, 'setYear');
+        monthPicker.val(changedMonth);
+        yearPicker.val(changedYear);
+        expect(ctrl.setMonth).toHaveBeenCalledWith(changedMonth);
+        expect(parseInt(ctrl.setYear)).toHaveBeenCalledWith(changedYear);
+
     });
 });
