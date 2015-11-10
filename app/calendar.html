@@ -1,0 +1,7 @@
+<div ng-transclude></div>
+<div class="calendar-container">
+    <div ng-repeat="dayTitle in ['Su', 'M', 'Tu', 'W', 'Th', 'F', 'Sa']" class="calendar-cell">{{ dayTitle }}</div>
+    <div class="calendar-cell" ng-repeat="day in calendar.days" ng-class="{outer: day.month !== calendar.month}">
+        {{ day.day }}
+    </div>
+</div>

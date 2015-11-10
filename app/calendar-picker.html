@@ -4,7 +4,7 @@
             <option ng-repeat="month in dropdowns.months.choices" value="{{ month }}" ng-selected="dropdowns.months.currentMonth === month">{{ month }}</option>
         </select>
         <select ng-model="dropdowns.years.currentYear" ng-change="processYearChange()">
-            <option ng-repeat="year in dropdowns.years.choices" value="{{ year }}" ng-selected="parseInt(dropdowns.years.currentYear) === parseInt(year)">{{ year }}</option>
+            <option ng-repeat="year in dropdowns.years.choices" value="{{ year }}" ng-selected="dropdowns.years.currentYear === year">{{ year }}</option>
         </select>
     </nav>
 </div>
