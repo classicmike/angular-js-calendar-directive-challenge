@@ -49,28 +49,7 @@ angular.module('calendarDemoApp', [])
 
                     $scope.calendar.days = CalendarRange.getMonthlyRange(date).days;
 
-
                 };
-
-                $scope.constructCalendar = function(){
-                    var dayIndex = 0;
-                    var weekIndex = 0;
-                    $scope.calendar.layout = [];
-
-                    //need to rearrange the days into a format for weeks and days
-                    angular.forEach($scope.calendar.days, function(day){
-                        console.log(day);
-
-                        //if the day index modulus 7 is 0 start the row
-                        $scope.calendar.layout[weekIndex].push(day);
-                        //if the modulus of 7 is 6 then we need to conclude the week
-                        if(dayIndex%7 === 6){
-                            weekIndex++;
-                        }
-
-                        dayIndex++;
-                    });
-                }
             },
             link: function(scope, element, attrs){
 

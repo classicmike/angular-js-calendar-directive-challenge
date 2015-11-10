@@ -15,9 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        './app/node_modules/jquery/dist/jquery.min.js',
+        './node_modules/jquery/dist/jquery.min.js',
         './app/bower_components/angular/angular.min.js',
         './app/bower_components/angular-mocks/angular-mocks.js',
+        './app/utilities/calendar-range/calendarRange.js',
         './app/*.js',
         './app/*.html'
     ],
