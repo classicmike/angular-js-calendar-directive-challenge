@@ -48,7 +48,6 @@ angular.module('calendarDemoApp', [])
                     }
 
                     $scope.calendar.days = CalendarRange.getMonthlyRange(date).days;
-                    console.log($scope.calendar.days);
 
 
                 };
